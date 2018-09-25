@@ -9,6 +9,7 @@ header('Cache-Control: no-cache, must-revalidate');
 require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/CommandRoute.php";
 require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/JsonResponse.php";
 
+
 /**
   логировать запросы и ошибки заказов
 */
@@ -50,5 +51,5 @@ try {
 
 } catch(Exception $err) {
 
-  echo $err->getMessage();
+  echo "Line:",$err->getLine(),' file:',$err->getFile(),' ',$err->getMessage();
 }
