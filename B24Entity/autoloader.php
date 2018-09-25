@@ -1,16 +1,8 @@
 <?php
-spl_autoload_register(function($class) {
+require_once $_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/prolog_before.php";
 
-$class = str_replace("\\","/",$class);
-
-$path = $_SERVER['DOCUMENT_ROOT']."/{$class}.php";
-
-if(file_exists($path)) {
-   
-    require_once $path;
-
-} else {
-    throw new Exception("file $path not found");
- }
-
-});
+Bitrix\Main\Loader::registerAutoLoadClasses(null, array(
+  '\B24Entity\Commands\Orders' => '/B24Entity/Commands/Orders.php',
+  '\B24Entity\Commands\Contractor' => '/B24Entity/Commands/Contractor.php',
+  '\B24Entity\Queries\Contractor' => '/B24Entity/Queries/Contractor.php'
+));
