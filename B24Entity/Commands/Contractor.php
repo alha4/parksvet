@@ -8,8 +8,7 @@ class Contractor extends Command {
 
  use \B24Entity\Helpers\Contractor;
 
- private static $errors = [];
- private static $contact_errors = [];
+ private static $CONTACT_ERRORS = [];
 
  public function execute($request) {
 
@@ -126,7 +125,7 @@ class Contractor extends Command {
 
        }
 
-       return array("RESPONSE" => "OK","CONTACT_RESULT" => self::$contact_errors ? : 'OK');
+       return array("RESPONSE" => "OK","CONTACT_RESULT" => self::$CONTACT_ERRORS ? : 'OK');
 
     }
   
@@ -208,7 +207,7 @@ class Contractor extends Command {
      
   } 
 
-  return array("RESPONSE" => "UPDATE OK","UPDATE_CONTACT" =>  self::$contact_errors);
+  return array("RESPONSE" => "UPDATE OK","UPDATE_CONTACT" =>  self::$CONTACT_ERRORS);
 
  }
 
@@ -248,7 +247,7 @@ class Contractor extends Command {
 
       }
 
-      self::$contact_errors[] = $crm_contact->LAST_ERROR;
+      self::$CONTACT_ERRORS[] = $crm_contact->LAST_ERROR;
 
       return false;
    }
@@ -312,7 +311,7 @@ class Contractor extends Command {
 
     }
 
-     self::$contact_errors[] = $contact->LAST_ERROR;
+     self::$CONTACT_ERRORS[] = $contact->LAST_ERROR;
 
      return false;
      
