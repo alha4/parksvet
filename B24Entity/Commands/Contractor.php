@@ -6,6 +6,8 @@ use \B24Entity\Commands\Command,
 
 class Contractor extends Command {
 
+ use \B24Entity\Helpers\Contractor;
+
  private static $status_map = [
    "Активный"     => 27,
    "Пассивный"    => 28,
@@ -159,27 +161,7 @@ class Contractor extends Command {
   }
  }
 
- private function addCompany(array $arCompany) {
-
-   $crm_company = new \CCrmCompany(false);
-
-   if($ID = $crm_company->Add($arCompany)) {
-
-      return $ID;
-
-   }
-  
-   self::$errors[] = $crm_company->LAST_ERROR;
-  
-   if($this->log_errors()) {
-
-      Logger::log($crm_company->LAST_ERROR);
-
-   }
-
-   return false;
-
- }
+ 
  
  private function updateCompany($ID,array &$arCompany) {
 

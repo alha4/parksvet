@@ -5,7 +5,9 @@ use \B24Entity\Commands\Command,
     \B24Entity\Helpers\Logger;
 
 class Orders extends Command  {
-  
+
+  use \B24Entity\Helpers\Contractor;
+
   private static $STAGES_NEW_CLIENT = [
    "Заявка"            => "PREPAYMENT_INVOICE",
    "Готов к отгрузке"  => 4,
@@ -112,7 +114,7 @@ class Orders extends Command  {
     "ASSIGNED_BY_ID"       => $request['MANAGER'],
     "STAGE_ID"             => $this->getStatusID($request['COMPANY_STAGE'], $request['STAGE_ID']),
     "CATEGORY_ID"          => $this->getCategoryID($request['COMPANY_STAGE']),
-    "COMPANY_ID"           => $this->getCompanyID($arCompany)
+    "COMPANY_ID"           => $this->getCompany($arCompany)
   ));
 
   return $arOrder;
@@ -149,54 +151,12 @@ class Orders extends Command  {
 
  }
  
- private function getCompanyID(array $arCompany) {
+ private function getCompany(array $arCompany) {
 
-   $filter = array("CHECK_PERMISSIONS" => "N");
-    
-   if($arCompany['COMPANY_CODE']) {
-
-      $filter['UF_CRM_1522989078195'] = $arCompany['COMPANY_CODE'];
-   
-   } elseif(strlen($arCompany['TITLE']) >= self::$MIN_STRING_LENGTH) {
-
-     $filter['TITLE'] = $arCompany['TITLE'];
-
-   } else {
-
-     return false;
-
-   }
-      
-   $company = \CCrmCompany::GetList(array("ID" => "DESC"), $filter, array("ID"));
-
-   $result = $company->Fetch();
-
-   return $result['ID'] ? : $this->addCompany($arCompany);
+   return $this->getCompanyID($arCompany['COMPANY_CODE']) ? : $this->addCompany($arCompany);
   
  }
 
- private function addCompany(array $arCompany) {
-
-   $crm_company = new \CCrmCompany(false);
-
-   if($ID = $crm_company->Add($arCompany)) {
-
-      return $ID;
- 
-   } 
-   
-   self::$ERRORS[] = $crm_company->LAST_ERROR;
-
-   if($this->log_errors()) {
-
-      Logger::log(array($arCompany, $crm_company->LAST_ERROR));
-
-   }
-
-   return false;
-
- }
- 
  private function addOrder(array $order) {
 
    $deal = new \CCrmDeal(false);
