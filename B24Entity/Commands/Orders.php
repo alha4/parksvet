@@ -1,7 +1,8 @@
 <?php
 namespace B24Entity\Commands;
 
-use B24Entity\Commands\Command;
+use \B24Entity\Commands\Command,
+    \B24Entity\Helpers\Logger;
 
 class Orders extends Command  {
   
@@ -52,7 +53,7 @@ class Orders extends Command  {
 
   if($this->log_request()) {
 
-     $this->log($request);
+    Logger::log($request);
    
   } 
   
@@ -188,7 +189,7 @@ class Orders extends Command  {
 
    if($this->log_errors()) {
 
-      $this->log(array($arCompany, $crm_company->LAST_ERROR));
+      Logger::log(array($arCompany, $crm_company->LAST_ERROR));
 
    }
 
@@ -206,7 +207,7 @@ class Orders extends Command  {
 
      if($this->log_errors()) {
 
-        $this->log(array($order, $deal->LAST_ERROR));
+        Logger::log(array($order, $deal->LAST_ERROR));
    
      } 
 
@@ -240,7 +241,7 @@ class Orders extends Command  {
 
      if($this->log_errors()) {
 
-        $this->log(array($fields, $deal->LAST_ERROR));
+        Logger::log(array($fields, $deal->LAST_ERROR));
 
      }
   
@@ -269,7 +270,7 @@ class Orders extends Command  {
 
      if($this->log_errors()) {
 
-         $this->log(array($products, \CCrmProductRow::GetLastError()));
+        Logger::log(array($products, \CCrmProductRow::GetLastError()));
 
      }
        

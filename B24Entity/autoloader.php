@@ -10,5 +10,6 @@ Bitrix\Main\Loader::registerAutoLoadClasses(null, array(
   '\B24Entity\Commands\Orders'     => '/B24Entity/Commands/Orders.php',
   '\B24Entity\Commands\Contractor' => '/B24Entity/Commands/Contractor.php',
   '\B24Entity\Queries\Query'       => '/B24Entity/Queries/Query.php',
-  '\B24Entity\Queries\Contractor'  => '/B24Entity/Queries/Contractor.php'
+  '\B24Entity\Queries\Contractor'  => '/B24Entity/Queries/Contractor.php',
+  '\B24Entity\Helpers\Logger'      => '/B24Entity/Helpers/Logger.php'
 ));
