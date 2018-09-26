@@ -1,7 +1,8 @@
 <?
 namespace B24Entity\Commands;
 
-use B24Entity\Commands\Command;
+use \B24Entity\Commands\Command,
+    \B24Entity\Helpers\Logger;
 
 class Contractor extends Command {
 
@@ -110,7 +111,7 @@ class Contractor extends Command {
 
   if($this->log_request()) {
    
-     $this->log($request);
+     Logger::log($request);
 
   }
 
@@ -172,7 +173,7 @@ class Contractor extends Command {
   
    if($this->log_errors()) {
 
-      $this->log($crm_company->LAST_ERROR);
+      Logger::log($crm_company->LAST_ERROR);
 
    }
 
@@ -224,7 +225,7 @@ class Contractor extends Command {
   
     if($this->log_errors()) {
     
-       $this->log($company->LAST_ERROR);
+       Logger::log($company->LAST_ERROR);
   
      }
 
@@ -268,7 +269,7 @@ class Contractor extends Command {
 
       if($this->log_errors()) {
 
-         $this->log(array($arContact, $contact->LAST_ERROR));
+         Logger::log(array($arContact, $contact->LAST_ERROR));
 
       }
 
@@ -332,7 +333,7 @@ class Contractor extends Command {
   
     if($this->log_errors()) {
 
-       $this->log($contact->LAST_ERROR);
+       Logger::log($contact->LAST_ERROR);
 
     }
 
@@ -440,7 +441,7 @@ class Contractor extends Command {
 
   if($this->log_errors()) {
     
-      $this->log($company->LAST_ERROR);
+     Logger::log($company->LAST_ERROR);
 
   }
 
