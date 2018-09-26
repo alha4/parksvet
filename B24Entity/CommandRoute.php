@@ -21,8 +21,6 @@ final class CommandRoute extends Route {
 
        $command = $class_map[$key][$request];
 
-       $class_path = str_replace('\\', '/', $command);
-
        $reflection = new \ReflectionClass($command);
   
        return $reflection->newInstance();

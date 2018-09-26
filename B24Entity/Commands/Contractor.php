@@ -1,4 +1,4 @@
-<?
+<?php
 namespace B24Entity\Commands;
 
 use \B24Entity\Commands\Command,
@@ -35,12 +35,12 @@ class Contractor extends Command {
      "UF_CRM_1522989078195" => trim($request['CODE']),
      "TITLE" => $request['TITLE'],
      "ASSIGNED_BY_ID"  => $request['MANAGER'], 
-     "FM" => array("EMAIL" => array("n0" => array("VALUE" => $request['EMAIL'], "VALUE_TYPE" => "WORK" )),
-                   "PHONE" => array("n0" => array("VALUE" => $request['PHONE'], "VALUE_TYPE" => "WORK" )),
-                   "WEB"   => array("n0" => array("VALUE" => $request['WEB'], "VALUE_TYPE" => "WORK" ))),                  
-     "UF_CRM_1526621027" => $request['UR_NAME'],
-     "UF_CRM_1526621036" => $request['OF_NAME'],
-     "UF_CRM_1526621055" => $request['MANAGER'],
+     "FM" => array("EMAIL"  => array("n0" => array("VALUE" => $request['EMAIL'], "VALUE_TYPE" => "WORK" )),
+                   "PHONE"  => array("n0" => array("VALUE" => $request['PHONE'], "VALUE_TYPE" => "WORK" )),
+                   "WEB"    => array("n0" => array("VALUE" => $request['WEB'], "VALUE_TYPE" => "WORK" ))),                  
+     "UF_CRM_1526621027"    => $request['UR_NAME'],
+     "UF_CRM_1526621036"    => $request['OF_NAME'],
+     "UF_CRM_1526621055"    => $request['MANAGER'],
      "UF_CRM_1522988414018" => $request['AVTOR'],
      "UF_CRM_1522988768425" => self::$COMPANY_STATUS_MAP[$request['STAGE_ID']],
      "UF_CRM_1526620698"    => $request['MAIN_WORK'], 
