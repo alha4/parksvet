@@ -1,7 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/Route.php";
+namespace B24Entity;
+
 require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/Commands/Command.php";
-require(__DIR__."/IResponse.php");
 
 use B24Entity\Route;
 

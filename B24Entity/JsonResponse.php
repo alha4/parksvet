@@ -1,5 +1,5 @@
 <?
-use \IResponse;
+use B24Entity\IResponse;
 
 class JsonResponse implements IResponse {
 

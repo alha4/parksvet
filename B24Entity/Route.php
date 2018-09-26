@@ -7,7 +7,7 @@ abstract class Route {
 
  protected $params;
 
- protected static $BASE_ENTITY_CLASS = 'B24Entity\Commands\CommandBase';
+ protected static $BASE_ENTITY_CLASS = 'B24Entity\Commands\Command';
 
  public static function init(array $options) {
 
