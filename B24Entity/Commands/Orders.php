@@ -32,13 +32,6 @@ class Orders extends Command  {
    "В разработке"   
   ];
 
-  private static $COMPANY_STATUS_MAP = [
-   "Активный"     => 27,
-   "Пассивный"    => 28,
-   "В разработке" => 29,
-   "Закрыт"       => 30
-  ];
-
   private static $ERRORS = [];
 
   const CATEGORY_DEAL_REGULAR_CLIENT = 1;

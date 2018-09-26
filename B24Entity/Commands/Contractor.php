@@ -8,13 +8,6 @@ class Contractor extends Command {
 
  use \B24Entity\Helpers\Contractor;
 
- private static $status_map = [
-   "Активный"     => 27,
-   "Пассивный"    => 28,
-   "В разработке" => 29,
-   "Закрыт"       => 30
- ];
-
  private static $errors = [];
  private static $contact_errors = [];
 
@@ -32,6 +25,12 @@ class Contractor extends Command {
 
   }
 
+  if($this->log_request()) {
+   
+     Logger::log($request);
+
+  }
+
   $arCompany = $this->filter_empty(array(
      "UF_CRM_1522989078195" => trim($request['CODE']),
      "TITLE" => $request['TITLE'],
@@ -43,7 +42,7 @@ class Contractor extends Command {
      "UF_CRM_1526621036" => $request['OF_NAME'],
      "UF_CRM_1526621055" => $request['MANAGER'],
      "UF_CRM_1522988414018" => $request['AVTOR'],
-     "UF_CRM_1522988768425" => self::$status_map[$request['STAGE_ID']],
+     "UF_CRM_1522988768425" => self::$COMPANY_STATUS_MAP[$request['STAGE_ID']],
      "UF_CRM_1526620698"    => $request['MAIN_WORK'], 
      "UF_CRM_1522988985550" => $request['OTHER_WORK'], 
      "UF_CRM_1526620683"    => $request['PUBLIC_NAME'], 
@@ -111,13 +110,7 @@ class Contractor extends Command {
     }
   }
 
-  if($this->log_request()) {
-   
-     Logger::log($request);
-
-  }
-
-  $crm_company_id = $this->getCompany($request['CODE']);
+  $crm_company_id = $this->getCompanyID($request['CODE']);
 
   if(!$crm_company_id) {
 
@@ -137,7 +130,9 @@ class Contractor extends Command {
 
     }
   
-    return array("RESPONSE_ERROR" => self::$errors);
+    Logger::log(self::$COMPANY_ERRORS);
+    
+    return array("RESPONSE_ERROR" => self::$COMPANY_ERRORS);
 
   } else {
   
@@ -161,8 +156,6 @@ class Contractor extends Command {
   }
  }
 
- 
- 
  private function updateCompany($ID,array &$arCompany) {
 
   $company = new \CCrmCompany(false);
@@ -329,16 +322,6 @@ class Contractor extends Command {
 
  }
  
- private function getCompany($code) {
-
-   $company = \CCrmCompany::GetList(array("UF_CRM_1522989078195" => "DESC"),array("UF_CRM_1522989078195" => $code,"CHECK_PERMISSIONS" => "N"),array("ID"));
-
-   $result = $company->Fetch();
-
-   return $result['ID'] ? : false;
-
- }
-
  private function getContact($code) {
 
    $contact = \CCrmContact::GetList(array("UF_CRM_1534323400" => "DESC"),array("UF_CRM_1534323400" => $code,"CHECK_PERMISSIONS" => "N"),array("ID"));
