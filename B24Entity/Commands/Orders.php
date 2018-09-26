@@ -1,9 +1,9 @@
 <?php
 namespace B24Entity\Commands;
 
-use B24Entity\Commands\CommandBase;
+use B24Entity\Commands\Command;
 
-class Orders extends CommandBase  {
+class Orders extends Command  {
   
   private static $STAGES_NEW_CLIENT = [
    "Заявка"            => "PREPAYMENT_INVOICE",

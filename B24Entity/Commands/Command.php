@@ -1,13 +1,11 @@
 <?php
 namespace B24Entity\Commands;
 
-require_once $_SERVER['DOCUMENT_ROOT']."/bitrix/modules/main/include/prolog_before.php";
-
 use Bitrix\Main\Loader;
 
 Loader::IncludeModule("crm");
 
-abstract class CommandBase {
+abstract class Command {
 
  const MAX_LOG_SIZE = 3;
 

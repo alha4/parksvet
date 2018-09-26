@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/Route.php";
-require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/Commands/CommandBase.php";
+require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/Commands/Command.php";
 require(__DIR__."/IResponse.php");
 
 use B24Entity\Route;
@@ -25,9 +25,9 @@ final class CommandRoute extends Route {
 
        $class_path = str_replace('\\', '/', $command);
 
-       require_once($_SERVER["DOCUMENT_ROOT"]."{$class_path}.php");
+       $reflection = new \ReflectionClass($command);
   
-       return new $command();
+       return $reflection->newInstance();
 
        break;
 

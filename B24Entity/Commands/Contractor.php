@@ -1,9 +1,9 @@
 <?
 namespace B24Entity\Commands;
 
-use B24Entity\Commands\CommandBase;
+use B24Entity\Commands\Command;
 
-class Contractor extends CommandBase {
+class Contractor extends Command {
 
  private static $status_map = [
    "Активный"     => 27,
