@@ -1,7 +1,9 @@
 <?
 namespace B24Entity\Queries;
 
-class Contractor  {
+use B24Entity\Queries\Query;
+
+class Contractor extends Query {
 
  private $uf_manager;
 

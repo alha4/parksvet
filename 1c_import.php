@@ -8,9 +8,6 @@ header('Cache-Control: no-cache, must-revalidate');
 
 require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/autoloader.php";
 
-#require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/CommandRoute.php";
-require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/JsonResponse.php";
-
 use \B24Entity\CommandRoute,
     \B24Entity\JsonResponse;
 
@@ -47,7 +44,7 @@ try {
   ];
 
   $command  = CommandRoute::init($route);
-  echo $command->response(new \JsonResponse());
+  echo $command->response(new JsonResponse());
 
 } catch(Error $err) {
  

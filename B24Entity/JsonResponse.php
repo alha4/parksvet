@@ -1,4 +1,6 @@
-<?
+<?php
+namespace B24Entity;
+
 use B24Entity\IResponse;
 
 class JsonResponse implements IResponse {
@@ -9,5 +11,3 @@ class JsonResponse implements IResponse {
 
   }
 }
-
-?>

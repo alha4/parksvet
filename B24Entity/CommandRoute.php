@@ -1,8 +1,6 @@
 <?php
 namespace B24Entity;
 
-require_once $_SERVER["DOCUMENT_ROOT"]."/B24Entity/Commands/Command.php";
-
 use B24Entity\Route;
 
 final class CommandRoute extends Route {
