@@ -7,8 +7,6 @@ abstract class Route {
 
  protected $params;
 
- protected static $BASE_ENTITY_CLASS = 'B24Entity\Commands\Command';
-
  public static function init(array $options) {
 
     if(is_null(self::$instance)) {

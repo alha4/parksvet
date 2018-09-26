@@ -3,7 +3,7 @@ header("Access-Control-Allow-Credentials: true");
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Max-Age: 1000');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
-#header("Content-type: application/json; charset=utf-8");
+header("Content-type: application/json; charset=utf-8");
 header('Cache-Control: no-cache, must-revalidate');
 
 require_once $_SERVER['DOCUMENT_ROOT']."/B24Entity/autoloader.php";
@@ -28,8 +28,8 @@ const CONTRACTOR_ERROR_LOG = 'Y';
 const MAX_LOG_SIZE = 1; 
 /**
   свой путь к логу
+  const LOG_PATH = '/your_path'; 
 */
-#const LOG_PATH = '/your_path'; 
 
 try {
 
@@ -48,9 +48,9 @@ try {
 
 } catch(Error $err) {
  
-   echo "Line:",$err->getLine(),' file:',$err->getFile(),' ',$err->getMessage();
+  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage()));
 
 } catch(Exception $err) {
 
-  echo "Line:",$err->getLine(),' file:',$err->getFile(),' ',$err->getMessage();
+  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage()));
 }
