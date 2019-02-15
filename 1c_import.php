@@ -19,8 +19,13 @@ const ORDER_ERROR_LOG = 'Y';
 /**
   логировать запросы и ошибки контрагентов
 */
-const CONTRACTOR_REQUEST_LOG = 'N';
+const CONTRACTOR_REQUEST_LOG = 'Y';
 const CONTRACTOR_ERROR_LOG = 'Y';
+
+/**
+  логировать запросы товары
+*/
+const GOODS_REQUEST_LOG = 'Y';
 
 /**
  максимальный размер лога в мегабайтах
@@ -36,7 +41,8 @@ try {
   $route = [
     'query' => [
         'orders'  => '\B24Entity\Commands\Orders',
-        'company' => '\B24Entity\Commands\Contractor'
+        'company' => '\B24Entity\Commands\Contractor',
+        'goods'   => '\B24Entity\Commands\Goods'
     ],
     'data' => [
         'contractor' => '\B24Entity\Queries\Contractor'
@@ -48,9 +54,9 @@ try {
 
 } catch(Error $err) {
  
-  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage()));
+  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage(),"trace" => $err->getTraceAsString()));
 
 } catch(Exception $err) {
 
-  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage()));
+  echo json_encode(array("Line" => $err->getLine(),'file' => $err->getFile(),'message' => $err->getMessage(),"trace" => $err->getTraceAsString()));
 }

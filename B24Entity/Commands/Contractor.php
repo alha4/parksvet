@@ -81,7 +81,8 @@ class Contractor extends Command {
      "UF_CRM_1522988400579" => $request['INFO'],
      "UF_CRM_1526622816"    => $request['BRAND_PRESENT'],
      "UF_CRM_1526622831"    => $request['REGION_SALE'],
-     "UF_CRM_1526623415"    => $request['DATE_CREATE']
+     "UF_CRM_1526623415"    => $request['DATE_CREATE'],
+
   ));
 
   $arContact = [];
@@ -98,7 +99,10 @@ class Contractor extends Command {
       $contact['UF_CRM_1522958860871'] =  $contact['IS_MAIN']; 
       $contact['UF_CRM_1522959041098'] =  $contact['FIO']; 
       $contact['UF_CRM_1534323400']    =  $contact['CODE_CONTACT'];
-
+      $contact["FM"] = array("PHONE" => array("n0" => array("VALUE" => $contact['MOBILE_PHONE'], "VALUE_TYPE" => "MOBILE"),
+                                              "n1" => array("VALUE" => $contact['PHONE'], "VALUE_TYPE" => "WORK" )));
+   
+      unset($contact['BIRTHDATE']);
       unset($contact['TYPE_CONTACT']);
       unset($contact['PROPERTY']);
       unset($contact['COMMUNICATION']);
@@ -272,6 +276,7 @@ class Contractor extends Command {
 
   if($this->isHasPhone($arContact)) {
     $fields['FM']["PHONE"][$this->getPhoneID($ID, \CCrmOwnerType::ContactName)] = array("VALUE" => trim($arContact['PHONE']), "VALUE_TYPE" => "WORK");
+    $fields['FM']["PHONE"][$this->getPhoneID($ID, \CCrmOwnerType::ContactName)] = array("VALUE" => trim($arContact['MOBILE_PHONE']), "VALUE_TYPE" => "MOBILE");
   }
 
   [$name,$last_name,$second_name] = explode(" ",$arContact['FIO']);
